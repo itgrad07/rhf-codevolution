@@ -1,3 +1,10 @@
-const App = () => <h1>Hello from React Hook Form!</h1>;
+import YouTubeForm from "./components/YouTubeForm";
+import "./App.css";
+
+const App = () => (
+  <div>
+    <YouTubeForm />
+  </div>
+);
 
 export default App;
