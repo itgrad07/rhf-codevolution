@@ -1,12 +1,18 @@
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
+let renderCount = 0;
+
 const YouTubeForm = () => {
   const { register, control } = useForm();
 
+  console.log("YouTubeForm");
+  renderCount++;
+
   return (
     <div>
-      <h1>YouTube Form</h1>
+      {/* changing input filelds does not cause rerenders; renderCount don`t change */}
+      <h1>YouTube Form ({renderCount / 2})</h1>
 
       <form>
         <label htmlFor="username">Username</label>
