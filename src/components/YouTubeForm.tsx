@@ -1,20 +1,24 @@
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-let renderCount = 0;
+type FormValues = {
+  username: string;
+  email: string;
+  channel: string;
+};
 
 const YouTubeForm = () => {
-  const { register, control } = useForm();
+  const { register, control, handleSubmit } = useForm<FormValues>();
 
-  console.log("YouTubeForm");
-  renderCount++;
+  const onSubmit = (data: FormValues) => {
+    console.log("form submitted with data", data);
+  };
 
   return (
     <div>
-      {/* changing input filelds does not cause rerenders; renderCount don`t change */}
-      <h1>YouTube Form ({renderCount / 2})</h1>
+      <h1>YouTube Form</h1>
 
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="username">Username</label>
         <input type="text" id="username" {...register("username")} />
 
