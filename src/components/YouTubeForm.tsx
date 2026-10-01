@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
 const YouTubeForm = () => {
-  const { register } = useForm();
+  const { register, control } = useForm();
 
   return (
     <div>
@@ -19,6 +20,7 @@ const YouTubeForm = () => {
 
         <button>Submit</button>
       </form>
+      <DevTool control={control} />
     </div>
   );
 };
