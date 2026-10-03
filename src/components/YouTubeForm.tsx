@@ -8,7 +8,25 @@ type FormValues = {
 };
 
 const YouTubeForm = () => {
-  const { register, control, handleSubmit, formState } = useForm<FormValues>();
+  const { register, control, handleSubmit, formState } = useForm<FormValues>({
+    // defaultValues: {
+    //   username: "Batman",
+    //   email: "",
+    //   channel: "",
+    // },
+    defaultValues: async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users/1",
+      );
+      const data = await response.json();
+
+      return {
+        username: data?.username || "",
+        email: data?.email || "",
+        channel: "",
+      };
+    },
+  });
   const { errors } = formState;
 
   const onSubmit = (data: FormValues) => {
