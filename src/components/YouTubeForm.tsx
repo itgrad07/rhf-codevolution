@@ -9,6 +9,7 @@ type FormValues = {
     twitter: "";
     facebook: "";
   };
+  phoneNumbers: string[];
 };
 
 const YouTubeForm = () => {
@@ -21,6 +22,7 @@ const YouTubeForm = () => {
         facebook: "",
         twitter: "",
       },
+      phoneNumbers: ["", ""],
     },
     // defaultValues: async () => {
     //   const response = await fetch(
@@ -113,6 +115,24 @@ const YouTubeForm = () => {
         <div className="form-control">
           <label htmlFor="twitter">Twitter</label>
           <input type="text" id="twitter" {...register("social.twitter")} />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="primary-number">Primary Phone Number</label>
+          <input
+            type="text"
+            id="primary-number"
+            {...register("phoneNumbers.0")}
+          />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="secondary-number">Secondary Phone Number</label>
+          <input
+            type="text"
+            id="secondary-number"
+            {...register("phoneNumbers.1")}
+          />
         </div>
 
         <button>Submit</button>
