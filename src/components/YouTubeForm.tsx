@@ -1,5 +1,6 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { useEffect } from "react";
 
 type FormValues = {
   username: string;
@@ -16,33 +17,34 @@ type FormValues = {
 };
 
 const YouTubeForm = () => {
-  const { register, control, handleSubmit, formState } = useForm<FormValues>({
-    defaultValues: {
-      username: "Batman",
-      email: "",
-      channel: "",
-      social: {
-        facebook: "",
-        twitter: "",
+  const { register, control, handleSubmit, formState, watch } =
+    useForm<FormValues>({
+      defaultValues: {
+        username: "Batman",
+        email: "",
+        channel: "",
+        social: {
+          facebook: "",
+          twitter: "",
+        },
+        phoneNumbers: ["", ""],
+        phNumbers: [{ number: "" }],
+        age: 0,
+        dob: new Date(),
       },
-      phoneNumbers: ["", ""],
-      phNumbers: [{ number: "" }],
-      age: 0,
-      dob: new Date(),
-    },
-    // defaultValues: async () => {
-    //   const response = await fetch(
-    //     "https://jsonplaceholder.typicode.com/users/1",
-    //   );
-    //   const data = await response.json();
+      // defaultValues: async () => {
+      //   const response = await fetch(
+      //     "https://jsonplaceholder.typicode.com/users/1",
+      //   );
+      //   const data = await response.json();
 
-    //   return {
-    //     username: data?.username || "",
-    //     email: data?.email || "",
-    //     channel: "",
-    //   };
-    // },
-  });
+      //   return {
+      //     username: data?.username || "",
+      //     email: data?.email || "",
+      //     channel: "",
+      //   };
+      // },
+    });
 
   const { errors } = formState;
   // console.log("errors", errors);
@@ -56,9 +58,29 @@ const YouTubeForm = () => {
     console.log("form submitted with data", data);
   };
 
+  // watch field
+  // const watchUsername = watch("username");
+
+  // watch several fields
+  // const watchUsername = watch(["username", "email"]);
+
+  // watch the whole form
+  // const watchForm = watch();
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      console.log(value);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [watch]);
+
   return (
     <div>
       <h1>YouTube Form</h1>
+      {/* <h2>Watched value: {JSON.stringify(watchForm)}</h2> */}
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="form-control">
