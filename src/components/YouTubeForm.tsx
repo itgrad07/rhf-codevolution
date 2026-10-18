@@ -17,7 +17,7 @@ type FormValues = {
 };
 
 const YouTubeForm = () => {
-  const { register, control, handleSubmit, formState, watch } =
+  const { register, control, handleSubmit, formState, watch, getValues } =
     useForm<FormValues>({
       defaultValues: {
         username: "Batman",
@@ -76,6 +76,13 @@ const YouTubeForm = () => {
       subscription.unsubscribe();
     };
   }, [watch]);
+
+  const handleGetValues = () => {
+    console.log("form", getValues());
+    console.log("field", getValues("social"));
+    console.log("nested field", getValues("social.twitter"));
+    console.log("fields", getValues(["username", "channel"]));
+  };
 
   return (
     <div>
@@ -213,6 +220,9 @@ const YouTubeForm = () => {
         </div>
 
         <button>Submit</button>
+        <button type="button" onClick={handleGetValues}>
+          Get Values
+        </button>
       </form>
       <DevTool control={control} />
     </div>
