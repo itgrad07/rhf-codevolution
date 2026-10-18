@@ -2,4 +2,4 @@
 
 [Youtube Playlist](https://www.youtube.com/playlist?list=PLC3y8-rFHvwjmgBr1327BA5bVXoQH-w5s)
 
-[Gitlab](https://github.com/gopinav/React-Hook-Form-Tutorials)
+[Github](https://github.com/gopinav/React-Hook-Form-Tutorials)
