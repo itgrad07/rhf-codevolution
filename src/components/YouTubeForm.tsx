@@ -17,34 +17,41 @@ type FormValues = {
 };
 
 const YouTubeForm = () => {
-  const { register, control, handleSubmit, formState, watch, getValues } =
-    useForm<FormValues>({
-      defaultValues: {
-        username: "Batman",
-        email: "",
-        channel: "",
-        social: {
-          facebook: "",
-          twitter: "",
-        },
-        phoneNumbers: ["", ""],
-        phNumbers: [{ number: "" }],
-        age: 0,
-        dob: new Date(),
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState,
+    watch,
+    getValues,
+    setValue,
+  } = useForm<FormValues>({
+    defaultValues: {
+      username: "Batman",
+      email: "",
+      channel: "",
+      social: {
+        facebook: "",
+        twitter: "",
       },
-      // defaultValues: async () => {
-      //   const response = await fetch(
-      //     "https://jsonplaceholder.typicode.com/users/1",
-      //   );
-      //   const data = await response.json();
+      phoneNumbers: ["", ""],
+      phNumbers: [{ number: "" }],
+      age: 0,
+      dob: new Date(),
+    },
+    // defaultValues: async () => {
+    //   const response = await fetch(
+    //     "https://jsonplaceholder.typicode.com/users/1",
+    //   );
+    //   const data = await response.json();
 
-      //   return {
-      //     username: data?.username || "",
-      //     email: data?.email || "",
-      //     channel: "",
-      //   };
-      // },
-    });
+    //   return {
+    //     username: data?.username || "",
+    //     email: data?.email || "",
+    //     channel: "",
+    //   };
+    // },
+  });
 
   const { errors } = formState;
   // console.log("errors", errors);
@@ -82,6 +89,15 @@ const YouTubeForm = () => {
     console.log("field", getValues("social"));
     console.log("nested field", getValues("social.twitter"));
     console.log("fields", getValues(["username", "channel"]));
+  };
+
+  const handleSetValue = () => {
+    // setValue("username", "");
+    setValue("username", "", {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
   };
 
   return (
@@ -222,6 +238,9 @@ const YouTubeForm = () => {
         <button>Submit</button>
         <button type="button" onClick={handleGetValues}>
           Get Values
+        </button>
+        <button type="button" onClick={handleSetValue}>
+          Set Value
         </button>
       </form>
       <DevTool control={control} />
