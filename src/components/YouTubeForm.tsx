@@ -53,7 +53,7 @@ const YouTubeForm = () => {
     // },
   });
 
-  const { errors } = formState;
+  const { errors, isDirty, isValid, touchedFields, dirtyFields } = formState;
   // console.log("errors", errors);
 
   const { fields, append, remove } = useFieldArray({
@@ -99,6 +99,8 @@ const YouTubeForm = () => {
       shouldValidate: true,
     });
   };
+
+  console.log(isDirty, isValid, touchedFields, dirtyFields);
 
   return (
     <div>
