@@ -25,6 +25,7 @@ const YouTubeForm = () => {
     watch,
     getValues,
     setValue,
+    reset,
   } = useForm<FormValues>({
     defaultValues: {
       username: "Batman",
@@ -117,6 +118,17 @@ const YouTubeForm = () => {
   };
 
   console.log(isDirty, isValid, touchedFields, dirtyFields);
+
+  const handleReset = () => {
+    // reset always resets to default values!
+    reset();
+  };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   return (
     <div>
@@ -261,6 +273,9 @@ const YouTubeForm = () => {
         </div>
 
         <button disabled={!isDirty || !isValid || isSubmitting}>Submit</button>
+        <button type="button" onClick={handleReset}>
+          Reset
+        </button>
         <button type="button" onClick={handleGetValues}>
           Get Values
         </button>
