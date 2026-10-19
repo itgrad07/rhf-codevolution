@@ -248,7 +248,7 @@ const YouTubeForm = () => {
           <p className="error">{errors.dob?.message}</p>
         </div>
 
-        <button>Submit</button>
+        <button disabled={!isDirty || !isValid}>Submit</button>
         <button type="button" onClick={handleGetValues}>
           Get Values
         </button>
