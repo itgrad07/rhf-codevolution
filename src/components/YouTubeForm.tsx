@@ -26,6 +26,7 @@ const YouTubeForm = () => {
     getValues,
     setValue,
     reset,
+    trigger,
   } = useForm<FormValues>({
     defaultValues: {
       username: "Batman",
@@ -131,6 +132,14 @@ const YouTubeForm = () => {
       reset();
     }
   }, [isSubmitSuccessful, reset]);
+
+  const handleValidate = () => {
+    // validate whole form
+    // trigger();
+
+    // validate certain field
+    trigger("channel");
+  };
 
   return (
     <div>
@@ -290,6 +299,9 @@ const YouTubeForm = () => {
         </button>
         <button type="button" onClick={handleSetValue}>
           Set Value
+        </button>
+        <button type="button" onClick={handleValidate}>
+          Validate
         </button>
       </form>
       <DevTool control={control} />
