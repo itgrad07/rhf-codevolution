@@ -52,6 +52,8 @@ const YouTubeForm = () => {
     //     channel: "",
     //   };
     // },
+    // (property) mode?: "onBlur" | "onChange" | "onSubmit" | "onTouched" | "all" | undefined
+    mode: "onSubmit",
   });
 
   const {
