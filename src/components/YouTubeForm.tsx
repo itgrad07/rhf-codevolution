@@ -1,6 +1,6 @@
-import { useForm, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
 
 type FormValues = {
   username: string;
@@ -172,7 +172,14 @@ const YouTubeForm = () => {
 
         <div className="form-control">
           <label htmlFor="twitter">Twitter</label>
-          <input type="text" id="twitter" {...register("social.twitter")} />
+          <input
+            type="text"
+            id="twitter"
+            {...register("social.twitter", {
+              // disabled: true,
+              disabled: watch("channel") === "",
+            })}
+          />
         </div>
 
         <div className="form-control">
