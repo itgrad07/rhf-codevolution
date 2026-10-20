@@ -1,10 +1,11 @@
 import "./App.css";
-import YupYoutubeForm from "./components/YupYoutubeForm";
+import ZodYoutubeForm from "./components/ZodYoutubeForm";
 
 const App = () => (
   <div>
     {/* <YouTubeForm /> */}
-    <YupYoutubeForm />
+    {/* <YupYoutubeForm /> */}
+    <ZodYoutubeForm />
   </div>
 );
 
